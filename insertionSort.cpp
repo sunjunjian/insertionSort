@@ -6,8 +6,19 @@
 
 using namespace std;
 
-double	gen_rand()	{ return	rand()/(double)RAND_MAX; }
+// double	gen_rand()	{ return	rand()/(double)RAND_MAX; }
 
+// uses struct to create a function object
+struct gen_rand
+	{
+		double	factor;
+
+		gen_rand() :	factor( 1/(double)RAND_MAX )	{}
+
+		double	operator()()	{
+			return	rand()*factor;
+		}
+	};
 
 int	main(int argc, char* argv[])
 {
@@ -26,9 +37,11 @@ int	main(int argc, char* argv[])
 	// ----------------------------------------
 	// creates a vector of random double values
 	// ----------------------------------------
+	
+
 	std::vector<double>		dVec;
 	dVec.reserve(num_items);
-	generate_n( std::back_inserter(dVec), num_items, gen_rand );
+	generate_n( std::back_inserter(dVec), num_items, gen_rand() );
 
 	// ---------------
 	// insertion sort
