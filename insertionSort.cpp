@@ -135,12 +135,14 @@ int	main(int argc, char* argv[])
 	// ----------------------------------
 	int			num_items = atoi( argv[1] ); 
 
+
+ 	// Seed the RNG - Ramdon Number Generator
+	srand( time( NULL ) );
+
  
 	// ----------------------------------------
 	// creates a vector of random double values
 	// ----------------------------------------
-	
-
 	vector<double>		dVec;
 	dVec.reserve(num_items);
 	generate_n( std::back_inserter(dVec), num_items, gen_rand() );
